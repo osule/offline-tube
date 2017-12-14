@@ -1,0 +1,3 @@
+celery==4.1.0
+Flask==0.11.1
+youtube-dl==2017.9.2

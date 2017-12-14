@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pip install -r web/requirements.txt
+
+cd client; npm install

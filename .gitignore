@@ -1,0 +1,4 @@
+.vscode
+.env
+*.pyc
+node_modules

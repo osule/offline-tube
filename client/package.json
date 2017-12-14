@@ -1,0 +1,22 @@
+{
+  "name": "offline-ytube",
+  "version": "1.0.0",
+  "description": "Download Youtube videos for offline viewing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osule/offline-ytube.git"
+  },
+  "author": "Oluwafemi Sule",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osule/offline-ytube/issues"
+  },
+  "homepage": "https://github.com/osule/offline-ytube#readme",
+  "dependencies": {
+    "react": "^16.2.0"
+  }
+}
