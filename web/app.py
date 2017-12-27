@@ -8,7 +8,7 @@ def register_blueprint(app, module, modifiers={}):
     app.register_blueprint(module.blueprint, **modifiers)
 
 
-def create_app(confs):
+def create_app(confs={}):
     app = Flask(__name__)
     app.config.from_object(confs)
     pyfile = confs.get('PYFILE', None)
