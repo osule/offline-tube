@@ -1,4 +1,5 @@
 celery==4.1.0
 Flask==0.11.1
 gunicorn==19.7.1
+requests==2.17.3
 youtube-dl==2017.9.2

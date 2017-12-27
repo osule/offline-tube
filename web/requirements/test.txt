@@ -1,3 +1,2 @@
 -r common.txt
 pytest==3.2.3
-requests==2.17.3
