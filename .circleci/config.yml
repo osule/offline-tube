@@ -50,9 +50,14 @@ jobs:
       - attach_workspace:
           at: ~/cataclysm
       - run:
-          name: Heroku deployment
+          name: Run setup script
+          command: bash .circleci/setup-heroku.sh
+      - run:
+          name: Deploy master to Heroku
           command: |
-            heroku push origin master
+            git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
+            heroku run python manage.py deploy
+            heroku restart
 
 workflows:
     version: 2
