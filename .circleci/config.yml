@@ -11,23 +11,21 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+
       - restore_cache:
           keys:
             - v2-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
-      - run:
-          name: Installing dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            cd web
-            pip install -r requirements/test.txt
-            pip install -r requirements/prod.txt
+      - run: python3 -m venv venv
+      - run: . venv/bin/activate
+      - run: pip install -r web/requirements/test.txt
+      - run: pip install -r web/requirements/prod.txt
       - save_cache:
           key: v2-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
           paths:
             - "venv/lib/python3.6/site-packages"
+
       - persist_to_workspace:
           root: .
           paths:
@@ -54,7 +52,7 @@ jobs:
           command: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
-            - "46:71:ec:ac:d0:4c:33:19:ea:a1:b9:98:95:5e:01:71"
+            - "9f:72:46:1f:4c:85:11:a6:0f:7f:eb:8a:8d:96:d4:7c"
       - run:
           name: Deploy master to Heroku
           command: |
