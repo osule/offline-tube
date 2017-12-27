@@ -13,7 +13,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "web/requirements/prod.txt" }}
+            - v1-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
@@ -24,6 +24,10 @@ jobs:
             cd web
             pip install -r requirements/test.txt
             pip install -r requirements/prod.txt
+      - save_cache:
+          key: v1-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
+          paths:
+            - lib/python3.6/site-packages
       - persist_to_workspace:
           root: ~/cataclysm
           paths:
