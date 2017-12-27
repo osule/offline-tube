@@ -13,9 +13,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
+            - v2-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v2-dependencies-
       - run:
           name: Installing dependencies
           command: |
@@ -25,11 +25,11 @@ jobs:
             pip install -r requirements/test.txt
             pip install -r requirements/prod.txt
       - save_cache:
-          key: v1-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
+          key: v2-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
           paths:
-            - venv/lib/python3.6/site-packages
+            - "venv/lib/python3.6/site-packages"
       - persist_to_workspace:
-          root: ~/cataclysm
+          root: .
           paths:
             - ./*
   test:
@@ -54,12 +54,12 @@ jobs:
           command: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
-            - "8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad"
+            - "46:71:ec:ac:d0:4c:33:19:ea:a1:b9:98:95:5e:01:71"
       - run:
           name: Deploy master to Heroku
           command: |
             git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
-            heroku run python manage.py deploy
+            # add management command
             heroku restart
 
 workflows:
