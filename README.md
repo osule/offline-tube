@@ -7,3 +7,8 @@ Download Youtube videos for offline viewing.
 ```bash
 ./bin/install
 ```
+
+## Run
+```bash
+./bin/run
+```
