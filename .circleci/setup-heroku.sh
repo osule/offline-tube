@@ -10,7 +10,11 @@ machine api.heroku.com
   password $HEROKU_API_KEY
 EOF
 
+mkdir -p ~/.ssh
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+
 cat >> ~/.ssh/config << EOF
-VerifyHostKeyDNS yes
-StrictHostKeyChecking no
+  VerifyHostKeyDNS yes
+  StrictHostKeyChecking no
 EOF

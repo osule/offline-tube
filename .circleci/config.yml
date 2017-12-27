@@ -4,7 +4,6 @@ defaults: &defaults
     - image: circleci/python:3.6.1
 
 
-
 version: 2
 jobs:
   build:
@@ -48,12 +47,12 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/cataclysm
-      - run:
-          name: Run setup script
-          command: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
             - "9f:72:46:1f:4c:85:11:a6:0f:7f:eb:8a:8d:96:d4:7c"
+      - run:
+          name: Run setup script
+          command: bash .circleci/setup-heroku.sh
       - run:
           name: Deploy master to Heroku
           command: |
