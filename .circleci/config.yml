@@ -1,42 +1,66 @@
+defaults: &defaults
+  working_directory: ~/cataclysm
+  docker:
+    - image: circleci/python:3.6.1
+
+
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/python:3
-        environment:
-          ENV: CI
+    <<: *defaults
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "web/requirements/prod.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
       - run:
-        name: Installing dependencies
-        command: |
-          cd ~/web
-          pip install -r requirements/test.txt
-          pip install -r requirements/prod.txt
+          name: Installing dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            cd web
+            pip install -r requirements/test.txt
+            pip install -r requirements/prod.txt
+      - persist_to_workspace:
+          root: ~/cataclysm
+          paths:
+            - ./*
   test:
+    <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/cataclysm
       - run:
-        name: Run tests and coverage
-        command: |
-          pytest .
+          name: Run tests and coverage
+          command: |
+            . venv/bin/activate
+            cd web
+            pytest .
 
   deploy:
+    <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/cataclysm
       - run:
-        name: Heroku deployment
-        command: |
-          heroku push origin master
+          name: Heroku deployment
+          command: |
+            heroku push origin master
+
 workflows:
     version: 2
     build_test_deploy:
       jobs:
-        - build:
-        - test
-          requires:
-            - build
+        - build
+        - test:
+            requires:
+              - build
         - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
+            requires:
+              - test
+            filters:
+              branches:
+                only: master
