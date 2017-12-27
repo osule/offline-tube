@@ -27,7 +27,7 @@ jobs:
       - save_cache:
           key: v1-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
           paths:
-            - lib/python3.6/site-packages
+            - venv/lib/python3.6/site-packages
       - persist_to_workspace:
           root: ~/cataclysm
           paths:
@@ -52,6 +52,9 @@ jobs:
       - run:
           name: Run setup script
           command: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "8b:48:5e:67:0e:c9:16:47:32:f2:87:0c:1f:c8:60:ad"
       - run:
           name: Deploy master to Heroku
           command: |
