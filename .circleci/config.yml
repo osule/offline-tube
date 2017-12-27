@@ -14,22 +14,22 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
+            - v3-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
-      - run: python3 -m venv venv
-      - run: . venv/bin/activate
-      - run: pip install -r web/requirements/test.txt
-      - run: pip install -r web/requirements/prod.txt
+            - v3-dependencies-
+      - run: 
+          name: Create or activate virtual environment
+          command: bash .circleci/setup-env.sh
+
       - save_cache:
-          key: v2-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
+          key: v3-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/prod.txt" }}
           paths:
-            - "venv/lib/python3.6/site-packages"
+            - ~/cataclysm/venv
 
       - persist_to_workspace:
           root: .
-          paths:
-            - ./*
+          paths: ./*
+
   test:
     <<: *defaults
     steps:
@@ -38,6 +38,7 @@ jobs:
       - run:
           name: Run tests and coverage
           command: |
+            ls -al
             . venv/bin/activate
             cd web
             pytest .
