@@ -1,0 +1,2 @@
+app = None
+sse = None
