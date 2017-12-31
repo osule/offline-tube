@@ -1,6 +1,6 @@
 import pytest
 
-from web.app import create_app
+from web.manage import app as flask_app
 
 
 @pytest.fixture(scope='session')
@@ -9,18 +9,16 @@ def app(request):
     settings_override = {
         'TESTING': True,
     }
-    
-    app = create_app(settings_override)
 
     # Establish an application context before running the tests.
-    ctx = app.app_context()
+    ctx = flask_app.app_context()
     ctx.push()
 
     def teardown():
         ctx.pop()
 
     request.addfinalizer(teardown)
-    return app
+    return flask_app
 
 @pytest.fixture(scope='session')
 def client(app):
