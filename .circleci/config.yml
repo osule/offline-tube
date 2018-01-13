@@ -13,13 +13,13 @@ jobs:
 
       - restore_cache:
           keys:
-            - v3-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/common.txt" }}
+            - v3-py-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/common.txt" }}
       - run: 
           name: Create or activate virtual environment
           command: bash .circleci/setup-env.sh
 
       - save_cache:
-          key: v3-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/common.txt" }}
+          key: v3-py-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/common.txt" }}
           paths:
             - ~/cataclysm/venv
 
