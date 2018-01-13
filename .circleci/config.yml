@@ -14,8 +14,6 @@ jobs:
       - restore_cache:
           keys:
             - v3-dependencies-{{ checksum "web/requirements/test.txt" }}-{{ checksum "web/requirements/common.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v3-dependencies-
       - run: 
           name: Create or activate virtual environment
           command: bash .circleci/setup-env.sh
