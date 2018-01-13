@@ -1,0 +1,7 @@
+BASEPATH = ../web/
+
+cp build/index.html BASEPATH/blueprints/home/templates/index.html
+
+rm -r BASEPATH/staticfiles/**/*
+cp -R build/static/* BASEPATH/staticfiles
+cp -R build/service-worker.js BASEPATH/staticfiles/js/service-worker.js
