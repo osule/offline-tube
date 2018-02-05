@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import  Search from './components/Search';
 import  Result from './components/Result';
 
 const STREAM_SOURCE = window.STREAM_SOURCE;
-const PUBLIC_URL = window.PUBLIC_URL;
 
 class App extends Component {
   constructor() {
@@ -38,7 +36,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Offline Tube</h1>
         </header>
         <Search onSubmit={onSubmit} />
