@@ -3,5 +3,6 @@
 *.pyc
 node_modules
 .cache
-
+build
+*.log
 NOTES
