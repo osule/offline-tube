@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/osule/offline-tube/issues"
   },
-  "homepage": "https://github.com/osule/offline-tube#readme",
+  "homepage": ".",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
