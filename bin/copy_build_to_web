@@ -1,7 +1,14 @@
-BASEPATH = ../web/
+echo 'Building client...'
 
-cp build/index.html BASEPATH/blueprints/home/templates/index.html
+cd ./client
+npm run build
+cd ../
 
-rm -r BASEPATH/staticfiles/**/*
-cp -R build/static/* BASEPATH/staticfiles
-cp -R build/service-worker.js BASEPATH/staticfiles/js/service-worker.js
+
+echo 'Copying over build files for client to web static directory...'
+
+cp ./client/build/index.html ./web/blueprints/home/templates/index.html
+
+rm -r ./web/static/**/*
+cp -R ./client/build/static/* ./web/static
+cp -R ./client/build/service-worker.js ./web/static/js/service-worker.js
