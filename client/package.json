@@ -1,22 +1,28 @@
 {
-  "name": "offline-ytube",
+  "name": "offline-tube",
   "version": "1.0.0",
+  "private": true,
   "description": "Download Youtube videos for offline viewing.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/osule/offline-ytube.git"
+    "url": "git+https://github.com/osule/offline-tube.git"
   },
   "author": "Oluwafemi Sule",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/osule/offline-ytube/issues"
+    "url": "https://github.com/osule/offline-tube/issues"
   },
-  "homepage": "https://github.com/osule/offline-ytube#readme",
+  "homepage": "https://github.com/osule/offline-tube#readme",
   "dependencies": {
-    "react": "^16.2.0"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
   }
 }
