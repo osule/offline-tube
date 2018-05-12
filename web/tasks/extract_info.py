@@ -1,11 +1,13 @@
+from os import getenv
+
 from youtube_dl import YoutubeDL
 from celery import Task
 from celery.result import AsyncResult
 
-
-from web.manage import app, sse
-from web.celery import celery
-from web.events import extract_info_success
+from celeree import celery
+from manage import app
+from manage import sse
+from events import extract_info_success
 
 
 class ExtractInfoTask(Task):

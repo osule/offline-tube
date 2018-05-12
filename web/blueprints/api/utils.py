@@ -1,7 +1,7 @@
 from .mappers import video_mapper
 
 from celery.result import AsyncResult
-from web.tasks import extract_info
+from tasks import extract_info
 
 def pass_query(fn):
     def wraps(*args):

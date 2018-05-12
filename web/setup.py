@@ -1,5 +1,5 @@
 import web
-from web import factory
+import factory
 
 
 app, sse = factory.create_app()
