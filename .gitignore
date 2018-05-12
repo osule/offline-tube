@@ -1,8 +1,17 @@
 .vscode
 .env
+.DS_Store
+
+# Python
 *.pyc
+__pycache__
+
+# Javascript
 node_modules
 .cache
+
 build
+
 *.log
+
 NOTES
