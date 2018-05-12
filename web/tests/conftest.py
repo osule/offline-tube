@@ -1,6 +1,6 @@
 import pytest
 
-from web.manage import app as flask_app
+from manage import app as flask_app
 
 
 @pytest.fixture(scope='session')
