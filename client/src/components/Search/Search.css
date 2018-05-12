@@ -1,0 +1,32 @@
+.Search-container {
+    margin-top: 32px;
+}
+
+.Search-button, .Search-input {
+    margin: 0;
+    font-size: 1em;
+    padding: 16px;
+}
+
+.Search-input {
+    width: 350px;
+}
+
+.Search-button {
+    font-weight: 900;
+    margin-left: 32px;
+}
+
+.Search-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 1px #b2b0b0;
+}
+
+.Search-button:focus {
+    cursor: pointer;
+    border: 0;
+    margin-left: 34px;
+    color: #ffffff;
+    background: rgba(43, 169, 155, 0.719);
+    outline: none;
+}

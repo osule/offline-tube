@@ -1,19 +1,10 @@
-import os
+from os import getenv
 
 
-NON_ENVFILE_ENVIRONMENTS = {'PRODUCTION', 'TEST'}
+ENVIRONMENT = getenv('ENVIRONMENT', 'development')
 
-def getenv(key, default=''):
-    return os.getenv(key, default)
+DEBUG = getenv('DEBUG', '')
 
+REDIS_URL = getenv('REDIS_URL', '')
 
-def configure_defaults():
-    env = getenv('ENVIRONMENT', 'DEVELOPMENT')
-    config = {
-        'DEBUG': getenv('DEBUG', True),
-        'REDIS_URL': getenv('REDIS_URL'),
-        'YOUTUBE_API_KEY': getenv('YOUTUBE_API_KEY'),
-    }
-    if env not in NON_ENVFILE_ENVIRONMENTS:
-        config['PYFILE'] = os.path.join('..', '.env')
-    return config
+YOUTUBE_API_KEY = getenv('YOUTUBE_API_KEY', '')

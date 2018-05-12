@@ -1,5 +1,5 @@
-from web.setup import app, sse
-from web.routes import register_blueprints
+from setup import app, sse
+from routes import register_blueprints
 
 register_blueprints()
 

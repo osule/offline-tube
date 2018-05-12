@@ -1,5 +1,5 @@
 from web import app, sse
-from .blueprints import api, home
+from blueprints import api, home
 
 
 def register_blueprints():
