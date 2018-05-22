@@ -11,5 +11,3 @@ COPY . .
 RUN chown -R node /usr/src/client
 
 USER node
-
-CMD npm start

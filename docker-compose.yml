@@ -3,7 +3,7 @@ x-backend:
   &backend
   build: web
   env_file: .env
-  depends_on: 
+  links: 
     - redis
   volumes:
     - type: bind
@@ -13,17 +13,16 @@ x-backend:
 services:
   client:
     build: client
-    ports:
-      - "3000:3000"
     volumes:
       - type: bind
         source: ./client
         target: /usr/src/client
+    command: npm run build
   web:
     << : *backend
     ports: 
       - "8000:8000"
-    command: gunicorn -b 0.0.0.0:8000 manage:app
+    command: gunicorn --worker-class gevent --log-level debug -b 0.0.0.0:8000 manage:app
   worker:
     << : *backend
     command: celery -A celeree worker --loglevel=info
@@ -31,3 +30,15 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+  nginx:
+    image: nginx:latest
+    build: nginx
+    ports:
+      - "80:80"
+    links:
+      - web
+      - client
+    volumes:
+      - type: bind
+        source: ./client/build
+        target: /usr/src/www

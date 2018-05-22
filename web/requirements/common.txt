@@ -1,6 +1,8 @@
-celery==4.1.0
-Flask-SSE==0.2.1
+kombu==4.1.0
+celery[redis]==4.0.2
+gevent
+flask-sse
 Flask==0.11.1
-gunicorn==19.7.1
+gunicorn
 requests==2.17.3
 youtube-dl==2017.9.2
