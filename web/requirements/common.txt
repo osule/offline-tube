@@ -1,8 +1,7 @@
-kombu==4.1.0
-celery[redis]==4.0.2
+celery
 gevent
 flask-sse
-Flask==0.11.1
+Flask
 gunicorn
-requests==2.17.3
-youtube-dl==2017.9.2
+requests
+youtube-dl
